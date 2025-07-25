@@ -37,7 +37,6 @@ export default function LandingPage() {
           <Button variant="outline">Register</Button>
         </Link>
       </div>
-
       <h2 className="text-2xl font-semibold mb-4">Semua Artikel</h2>
       {articles.length === 0 ? (
         <p className="text-gray-500">Belum ada artikel</p>
@@ -45,7 +44,12 @@ export default function LandingPage() {
         <div className="space-y-4">
           {articles.map((article) => (
             <div key={article.id} className="border p-4 rounded shadow-sm">
-              <h3 className="font-bold text-lg">{article.title}</h3>
+              <Link
+                href={`/article/${article.id}`}
+                className="font-bold text-lg hover:underline"
+              >
+                {article.title}
+              </Link>
               <p className="text-gray-600">{article.content}</p>
               <p className="text-sm text-gray-500 mt-2">
                 Ditulis oleh: {article.author.name || article.author.email}
