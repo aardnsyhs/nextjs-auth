@@ -11,7 +11,14 @@ export async function POST(req: NextRequest) {
   }
 
   const body = await req.json();
-  const { title, content } = body;
+  const { title, content, status } = body;
+
+  if (!title || !content) {
+    return NextResponse.json(
+      { message: "Title and content are required" },
+      { status: 400 }
+    );
+  }
 
   const user = await prisma.user.findUnique({
     where: { email: session.user.email },
@@ -21,6 +28,7 @@ export async function POST(req: NextRequest) {
     data: {
       title,
       content,
+      status: status || "draft",
       authorId: user!.id,
     },
   });
