@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -20,9 +21,11 @@ export default function RegisterPage() {
     });
 
     if (res.ok) {
+      toast.success("Registration Successful. You can now log in!");
       router.push("/login");
     } else {
       const data = await res.json();
+      toast.error("Registration failed. Please try again.");
       setError(data.message || "Register failed");
     }
   };

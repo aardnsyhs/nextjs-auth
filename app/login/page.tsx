@@ -5,6 +5,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -22,8 +23,10 @@ export default function LoginPage() {
     });
 
     if (res?.ok) {
+      toast.success("Login Successful. Welcome back!");
       router.push("/dashboard");
     } else {
+      toast.error("Login failed. Invalid email or password");
       setError("Invalid email or password");
     }
   };
