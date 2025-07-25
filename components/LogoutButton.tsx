@@ -8,8 +8,8 @@ export function LogoutButton({ className }: { className?: string }) {
   return (
     <Button
       onClick={() => {
-        toast.success("You have been logged out.");
         signOut({ callbackUrl: "/" });
+        toast.success("You have been logged out.");
       }}
       className={`mt-4 text-sm text-red-500 ${className}`}
     >

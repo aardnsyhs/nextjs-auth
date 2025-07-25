@@ -6,6 +6,7 @@ import CreateFormArticle from "@/components/CreateFormArticle";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 
 interface Article {
   id: string;
@@ -35,6 +36,7 @@ export default function DashboardClient() {
     });
 
     if (res.ok) {
+      toast.success("Successfully updated article");
       setEditingArticle(null);
       fetchArticles();
     }
@@ -82,7 +84,10 @@ export default function DashboardClient() {
                         method: "DELETE",
                       });
                       if (res.ok) {
+                        toast.success("Successfully deleted article");
                         fetchArticles();
+                      } else {
+                        toast.error("Failed to delete article");
                       }
                     }}
                   >
