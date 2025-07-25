@@ -8,9 +8,11 @@ import { Loader2 } from "lucide-react";
 export function DeleteArticleButton({
   id,
   onSuccess,
+  size,
 }: {
   id: string;
   onSuccess: () => void;
+  size?: string;
 }) {
   const [isLoading, setIsLoading] = useState(false);
 

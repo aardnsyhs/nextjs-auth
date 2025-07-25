@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useSession, signOut } from "next-auth/react";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -8,6 +11,8 @@ import {
 import { Button } from "../ui/button";
 
 export default function Navbar() {
+  const { data: session } = useSession();
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between px-4">
@@ -40,12 +45,25 @@ export default function Navbar() {
           </NavigationMenuList>
         </NavigationMenu>
         <div className="flex items-center space-x-4">
-          <Link href="/login">
-            <Button variant="ghost">Sign In</Button>
-          </Link>
-          <Link href="/register">
-            <Button>Sign Up</Button>
-          </Link>
+          {session?.user ? (
+            <>
+              <span className="text-sm font-medium">
+                Hello, {session.user.name || session.user.email}
+              </span>
+              <Button variant="ghost" onClick={() => signOut()}>
+                Logout
+              </Button>
+            </>
+          ) : (
+            <>
+              <Link href="/login">
+                <Button variant="ghost">Sign In</Button>
+              </Link>
+              <Link href="/register">
+                <Button>Sign Up</Button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>

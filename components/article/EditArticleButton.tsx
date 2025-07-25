@@ -6,9 +6,11 @@ import { Article } from "@/types/article";
 export function EditArticleButton({
   article,
   onEdit,
+  size,
 }: {
   article: Article;
   onEdit: (a: Article) => void;
+  size?: string;
 }) {
   return (
     <Button

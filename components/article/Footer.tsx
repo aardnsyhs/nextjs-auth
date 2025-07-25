@@ -1,33 +1,25 @@
+"use client";
+
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 export default function Footer() {
   return (
-    <footer className="border-t bg-gray-100 py-8">
-      <div className="container flex flex-col items-center justify-between gap-4 md:flex-row">
-        <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-          <p className="text-sm text-muted-foreground">
-            © 2023 ArticlePortal. All rights reserved.
-          </p>
+    <footer className="border-t py-6 bg-background">
+      <div className="container flex flex-col md:flex-row justify-between items-center">
+        <div className="text-sm text-muted-foreground">
+          © {new Date().getFullYear()} ArticlePortal. All rights reserved.
         </div>
-        <div className="flex items-center space-x-6">
-          <Link
-            href="/terms"
-            className="text-sm text-muted-foreground hover:text-foreground"
-          >
+        <div className="flex gap-4 mt-4 md:mt-0">
+          <Button variant="link" size="sm" className="text-muted-foreground">
             Terms
-          </Link>
-          <Link
-            href="/privacy"
-            className="text-sm text-muted-foreground hover:text-foreground"
-          >
+          </Button>
+          <Button variant="link" size="sm" className="text-muted-foreground">
             Privacy
-          </Link>
-          <Link
-            href="/contact"
-            className="text-sm text-muted-foreground hover:text-foreground"
-          >
+          </Button>
+          <Button variant="link" size="sm" className="text-muted-foreground">
             Contact
-          </Link>
+          </Button>
         </div>
       </div>
     </footer>
